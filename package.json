@@ -1,0 +1,27 @@
+{
+  "name": "spotpilot-quant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first spot crypto quant validation and risk workbench",
+  "author": "Kairo",
+  "license": "MIT",
+  "scripts": {
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev:api": "cd apps/api && uvicorn app.main:app --reload --host 0.0.0.0 --port 8001",
+    "test:dev:start": "bash scripts/test-dev-start.sh",
+    "test:dev:restart": "bash scripts/test-dev-restart.sh",
+    "build:web": "npm --prefix apps/web run build",
+    "lint:web": "npm --prefix apps/web run lint",
+    "typecheck:web": "npm --prefix apps/web run typecheck",
+    "test:api": "cd apps/api && python3 -m pytest",
+    "check:api": "cd apps/api && python3 -m compileall app tests scripts",
+    "init-db:api": "cd apps/api && python3 scripts/init_db.py"
+  },
+  "workspaces": [
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=20",
+    "python": ">=3.10"
+  }
+}

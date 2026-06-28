@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: spotpilot-quant-mysql
+    environment:
+      MYSQL_DATABASE: spotpilot_quant
+      MYSQL_USER: spotpilot
+      MYSQL_PASSWORD: spotpilot_local
+      MYSQL_ROOT_PASSWORD: spotpilot_root
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uspotpilot", "-pspotpilot_local"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
